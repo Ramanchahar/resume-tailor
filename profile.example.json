@@ -1,0 +1,40 @@
+{
+  "first_name": "Raman",
+  "last_name": "Chahar",
+  "preferred_name": "Raman",
+  "email": "ramanchahar321123@gmail.com",
+  "phone": "408-899-0578",
+  "location": {"city": "San Jose", "state": "California", "country": "United States"},
+  "linkedin": "https://www.linkedin.com/in/raman-chahar/",
+  "github": null,
+  "website": null,
+  "current_company": "Experian",
+  "current_title": "Software Engineer II",
+  "years_of_experience": "1.5 years full-time software engineering, 3+ including data science and internships",
+  "education": {"school": "Northeastern University", "degree": "MS Computer Science", "graduated": "2025"},
+
+  "work_authorization": {
+    "authorized_to_work_in_us": true,
+    "status": "F-1 STEM OPT",
+    "requires_sponsorship_now": false,
+    "requires_sponsorship_in_future": true
+  },
+
+  "willing_to_relocate": null,
+  "open_to_onsite_or_hybrid": null,
+  "earliest_start_date": null,
+  "notice_period": null,
+  "salary_expectation": null,
+  "how_did_you_hear": "Job board",
+
+  "eeo": {
+    "gender": "Decline to self-identify",
+    "race_ethnicity": "Decline to self-identify",
+    "hispanic_or_latino": "Decline to self-identify",
+    "veteran_status": "Decline to self-identify",
+    "disability_status": "Decline to self-identify",
+    "sexual_orientation": "Decline to self-identify"
+  },
+
+  "other_notes": "Anything else the form-filler should know, e.g. 'never previously worked at or interviewed with these companies: ...'."
+}

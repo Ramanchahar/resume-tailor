@@ -15,3 +15,7 @@ wheels/
 # Per-job inputs and outputs
 description.txt
 generated_resumes/
+
+# Agent state: tracker database, screenshots, and personal form answers
+data/
+profile.json

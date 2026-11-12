@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Runs the job agent twice a day, shortly after jobs.ypatodkar.com refreshes.
+  Runs through an interactive zsh so ~/.zshrc sets ANTHROPIC_API_KEY.
+
+  Install:   cp launchd/com.ramanchahar.resume-tailor.plist ~/Library/LaunchAgents/
+             launchctl load ~/Library/LaunchAgents/com.ramanchahar.resume-tailor.plist
+  Uninstall: launchctl unload ~/Library/LaunchAgents/com.ramanchahar.resume-tailor.plist
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.ramanchahar.resume-tailor</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/zsh</string>
+        <string>-ic</string>
+        <string>cd ~/Documents/JaiHanuman &amp;&amp; mkdir -p data/logs &amp;&amp; .venv/bin/python -m agent.run --limit 40 &gt;&gt; data/logs/daily.log 2&gt;&amp;1</string>
+    </array>
+    <key>StartCalendarInterval</key>
+    <array>
+        <dict><key>Hour</key><integer>10</integer><key>Minute</key><integer>0</integer></dict>
+        <dict><key>Hour</key><integer>22</integer><key>Minute</key><integer>0</integer></dict>
+    </array>
+    <key>RunAtLoad</key>
+    <false/>
+</dict>
+</plist>

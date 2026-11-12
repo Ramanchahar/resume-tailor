@@ -25,7 +25,7 @@ from anthropic import Anthropic
 from prompt_maker import build_job_message, build_revision_message, build_system_prompt
 
 MODEL = "claude-opus-5-5"
-EFFORT = "high"
+EFFORT = "medium"
 MAX_OUTPUT_TOKENS = 64000
 MAX_REVISIONS = 3
 
@@ -265,10 +265,38 @@ def main() -> int:
         print("ERROR: description.txt is empty. Paste a job description into it.")
         return 1
 
+    try:
+        result = tailor(job_description)
+    except RuntimeError as e:
+        print(f"ERROR: {e}")
+        return 1
+
+    print()
+    if result["notes"]:
+        print(result["notes"])
+        print()
+    print(f"TeX:   {result['tex_path']}")
+    print(f"Notes: {result['notes_path']}")
+    if result["pdf_path"]:
+        print(f"PDF:   {result['pdf_path']}")
+    if result["problems"]:
+        print("WARNING: best draft still has issues:")
+        for p in result["problems"]:
+            print(f"  - {p.splitlines()[0]}")
+        return 2
+    return 0
+
+
+def tailor(job_description: str, output_dir: str = OUTPUT_DIR, base_name: str | None = None) -> dict:
+    """Tailor Raman.tex to one job description and write the .tex, notes, and PDF.
+
+    Returns the output paths (pdf_path is None if the best draft didn't compile),
+    the notes, and any problems the best draft still has. Raises RuntimeError if
+    pdflatex is missing or no usable draft was produced.
+    """
     pdflatex = find_pdflatex()
     if not pdflatex:
-        print("ERROR: pdflatex not found. Install MacTeX: https://www.tug.org/mactex/")
-        return 1
+        raise RuntimeError("pdflatex not found. Install MacTeX: https://www.tug.org/mactex/")
 
     with open(BASE_RESUME) as f:
         base_tex = f.read()
@@ -314,15 +342,15 @@ def main() -> int:
             messages.append({"role": "user", "content": build_revision_message(problems)})
 
     if best is None:
-        print("ERROR: no usable resume was produced.")
-        return 1
+        raise RuntimeError("no usable resume was produced.")
 
     _, tex, notes, build, problems = best
-    company, role = parse_target(notes)
-    stamp = datetime.now().strftime("%Y%m%d_%H%M")
-    base_name = "_".join(s for s in (slugify(company), slugify(role), stamp) if s)
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
-    out = os.path.join(OUTPUT_DIR, base_name)
+    if base_name is None:
+        company, role = parse_target(notes)
+        stamp = datetime.now().strftime("%Y%m%d_%H%M")
+        base_name = "_".join(s for s in (slugify(company), slugify(role), stamp) if s)
+    os.makedirs(output_dir, exist_ok=True)
+    out = os.path.join(output_dir, base_name)
 
     with open(out + ".tex", "w") as f:
         f.write(tex)
@@ -332,20 +360,13 @@ def main() -> int:
         with open(out + ".pdf", "wb") as f:
             f.write(build["pdf"])
 
-    print()
-    if notes:
-        print(notes)
-        print()
-    print(f"TeX:   {out}.tex")
-    print(f"Notes: {out}_notes.txt")
-    if build["ok"]:
-        print(f"PDF:   {out}.pdf")
-    if problems:
-        print("WARNING: best draft still has issues:")
-        for p in problems:
-            print(f"  - {p.splitlines()[0]}")
-        return 2
-    return 0
+    return {
+        "tex_path": out + ".tex",
+        "notes_path": out + "_notes.txt",
+        "pdf_path": out + ".pdf" if build["ok"] else None,
+        "notes": notes,
+        "problems": problems,
+    }
 
 
 if __name__ == "__main__":
