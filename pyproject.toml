@@ -1,0 +1,9 @@
+[project]
+name = "resume-modder"
+version = "0.2.0"
+description = "Tailor Raman.tex to a job description with Claude and compile a one-page PDF"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "anthropic>=1.9.0",
+]

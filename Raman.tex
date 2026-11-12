@@ -1,0 +1,205 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[left=10px,right=10px,top=10px,bottom=10px,paperwidth=9in,paperheight=12in]{geometry}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+
+% serif
+\usepackage{CormorantGaramond}
+\usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-6pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+
+\begin{center}
+    \textbf{\Huge \scshape  Raman Chahar} \\ \vspace{1pt}
+    \small San Jose, CA $|$ 408-899-0578 $|$ \href{mailto:ramanchahar321123@gmail.com}{\underline{ramanchahar321123@gmail.com}} $|$
+    \href{https://www.linkedin.com/in/raman-chahar/}{\underline{linkedin.com/in/raman-chahar}}
+\end{center}
+
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+  {Software Engineer II}{Jan 2026 -- Present}
+  {Experian}{California, US}
+  \resumeItemListStart
+    \resumeItem{\textbf{Led a 4-engineer team} that built \textbf{Agent Studio} from scratch and shipped it to production: Experian's first client-facing \textbf{multi-tenant agent platform}, where financial institutions build, test, deploy and monitor their own agents on Experian infra (\textbf{Bedrock AgentCore} runtime, per-client isolation, sandbox$\rightarrow$prod promotion); owned the \textbf{evals and guardrails roadmap} adopted by both engineering teams}
+    \resumeItem{\textbf{Productionized Agentic Sandbox}, Experian's flagship agentic platform for credit-risk analysts: migrated \textbf{5 analyst use cases} onto \textbf{Bedrock AgentCore} across DEV/UAT/PROD on a greenfield AWS account, and designed the multi-repo, versioned base-image and \textbf{Terraform + Jenkins CI/CD} strategy adopted by 6 use-case teams}
+    \resumeItem{\textbf{Fine-tuned} the code-generation model behind \textbf{Experian Assistant} on \textbf{AWS SageMaker} with \textbf{SFT} followed by \textbf{GRPO} on execution-verified rewards, raising first-attempt executable-code rate \textbf{64\%$\rightarrow$87\%} and cutting tokens per task \textbf{30\%}; led its rollout to production across North America}
+    \resumeItem{Cut end-to-end agent run time \textbf{100$\rightarrow$15 min (-85\%)} and cost per run \textbf{40\%} through a \textbf{latency and cost audit} of the agent harness, redesigning prompt caching, parallelizing sub-agents and caching knowledge-graph retrieval}
+    \resumeItem{Re-architected the \textbf{multi-agent orchestrator} (dynamic delegation, skill playbooks, \textbf{independent reviewer gate}) after benchmarking \textbf{8 candidate architectures} head-to-head; adopted as the production design and endorsed by \textbf{Anthropic's} embedded engineers}
+    \resumeItem{Built the platform's \textbf{evaluation framework} from scratch (golden tasks, \textbf{LLM-as-judge}, seeded-defect evals, A/B runner, \textbf{Langfuse} tracing); it now gates every architecture change and blocked a vendor harness swap that would have \textbf{tripled token usage}}
+  \resumeItemListEnd
+
+    \resumeSubheading
+  {Software Engineer}{June 2025 -- Jan 2026}
+  {Experian}{California, US}
+  \resumeItemListStart
+    \resumeItem{Owned the \textbf{Scala/Spark billing ETL pipeline} on \textbf{AWS EMR} that meters \textbf{50K+ daily transactions} to bill enterprise clients; optimized join partitioning and predicate pushdown, cutting the nightly run \textbf{3.5h$\rightarrow$1.2h} and EMR spend \textbf{40\%} with zero billing discrepancies}
+    \resumeItem{Consolidated \textbf{4 teams'} billing outputs into one validated ETL stage with reconciliation checks, removing \textbf{10+ hrs/week} of manual reconciliation, and built \textbf{data marts} and product views over \textbf{petabyte-scale} credit data for a \textbf{mainframe-to-cloud migration}}
+  \resumeItemListEnd
+
+   \resumeSubheading
+  {Software Engineer Intern}{May 2024 -- Jan 2025}
+  {Experian}{California, US}
+  \resumeItemListStart
+    \resumeItem{Built an \textbf{LLM + static-analysis} tool for a \textbf{legacy-platform migration} that parsed \textbf{15K+ C++/Java files} into dependency graphs and migration summaries, cutting engineer triage time \textbf{80\%}}
+    \resumeItem{\textbf{Won} Experian's internal hackathon with \textbf{AiVerse}, a \textbf{RAG system} for natural-language Q\&A over legacy codebases}
+  \resumeItemListEnd
+
+     \resumeSubheading
+      {Data Scientist}{June 2022 -- July 2023}
+      {Global Action Alliance}{Remote, US}
+      \resumeItemListStart
+        \resumeItem{Trained and deployed \textbf{distributed PyTorch (DDP)} models with \textbf{retrieval pipelines} on \textbf{1M+ public-health records} for decision support, improving prediction accuracy \textbf{30\%} over the statistical baseline}
+        \resumeItem{Architected \textbf{Python/Flask REST APIs} on PostgreSQL/AWS and \textbf{real-time Databricks dashboards} with \textbf{sub-second} query response}
+      \resumeItemListEnd
+
+      \resumeSubheading
+      {Software Engineer Intern}{Jan 2022 -- May 2022}
+      {Amazon}{Bengaluru, IN}
+      \resumeItemListStart
+        \resumeItem{Unified fragmented catalog dashboards into one platform with \textbf{SQL/Python pipelines}, serving \textbf{500+ catalog metrics} at \textbf{99.9\% uptime}}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Python, Scala, SQL, Java, C++, TypeScript, Bash} \\
+
+     \textbf{Deep Learning \& RL}{: PyTorch (DDP), Transformers, LLM fine-tuning (SFT, GRPO/DPO, RLHF), reward modeling, XGBoost, Explainable AI} \\
+
+     \textbf{Agentic \& LLM Systems}{: Bedrock AgentCore, Claude Agent SDK, MCP, multi-agent orchestration, evals / LLM-as-judge, RAG/GraphRAG} \\
+
+     \textbf{Platform \& Infra}{: AWS (EMR, EKS, Bedrock, SageMaker), Terraform, Docker, Kubernetes, Jenkins CI/CD, Kafka, Redis, PostgreSQL, Neo4j} \\
+
+     \textbf{Data Engineering \& APIs}{: Spark, Databricks, Glue, ETL design, REST API design}
+     }}
+ \end{itemize}
+
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+
+  \resumeProjectHeading
+ {\textbf{CollabSphere AI} $|$ \emph{Agent Memory, Retrieval-Augmented Generation, Neo4j, Redis, Python, Next.js}}{Jan 2025}
+ \resumeItemListStart
+   \resumeItem{Engineered a \textbf{graph-structured RAG memory system} for agents that beat the A-MEM research baseline by \textbf{42\% retrieval accuracy} with \textbf{37\% fewer hallucinations}; a \textbf{Redis/Neo4j caching layer} cut data-access latency \textbf{62\%}}
+   \resumeItem{Built a \textbf{Next.js + D3.js} interface exposing memory reasoning paths for retrieval debugging}
+ \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Northeastern University}{Aug 2023 -- May 2025}
+      {Master of Science in Computer Science; \textbf{TA} for CS6120 (Natural Language Processing)}{GPA: 3.86/4}
+    \resumeSubheading
+      {Delhi Technological University}{Aug 2018 -- May 2022}
+      {Bachelor of Technology in Mathematics and Computing}{GPA: 8.40/10}
+  \resumeSubHeadingListEnd
+
+
+\section{Research Publications}
+  \resumeSubHeadingListStart
+    \resumeProjectHeading
+      {\href{https://ieeexplore.ieee.org/abstract/document/10627058}{\textbf{Beyond Words: Adapting NLP Methodologies for Time Series Forecasting}} $|$ \emph{IEEE, transformer sequence models}}{Nov 2023}
+    \resumeProjectHeading
+      {\href{https://link.springer.com/chapter/10.1007/978-981-19-8563-8_41}{\textbf{Exploring the Potential of Explainable AI in Identifying Error and Biases}} $|$ \emph{Springer}}{Mar 2023}
+    \resumeProjectHeading
+      {\href{https://ieeexplore.ieee.org/abstract/document/9847815}{\textbf{An Enhanced IDS Using Combinational Feature Ranking and Machine Learning Algorithms}} $|$ \emph{IEEE}}{Aug 2022}
+  \resumeSubHeadingListEnd
+
+
+%-------------------------------------------
+\end{document}
